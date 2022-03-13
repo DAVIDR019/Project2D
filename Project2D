@@ -1,0 +1,53 @@
+Scientific Question: How do mutations in the envelope protein between the different COVID variants affect infection/mortality rate?
+
+The envelope protein is one the main structural proteins for the SARS-CoV-2 virus. It has been found to be important for the viruses' pathogenicity and structure.
+Scientific Hypothesis: If mutations to the spike protein are causing infection rates to rise, then mutations to the CoV envelope's protein sequence may also result in changes to infection rate or side effects/mortality because the envelope plays a key role in the viruses' pathogenesis.
+
+blah blah blah
+Part 1: Load the packages
+
+The following packages were used
+
+Pandas:
+
+Numpy: Numpy is used to work with arrays. Using numpy is necessary because it increases speed and allows to future organize data compared to the default python lists. It is very easy to use and will help further visualize data. https://www.w3schools.com/python/numpy/numpy_intro.asp
+
+Biopython: Biopython will be used to obtain the pairwise2 module in order to perform pairwise sequence alignment. Pairwise2 lets you analyze two sequences with multiple parameters and give you a score. These parameters include: matches, mismatches, gaps, and extended gaps. Matches will award points while the other parameters will all subtract points. The code runs quickly and is easy to set up. https://biopython.org/wiki/Getting_Started
+
+Seaborn: This package will be used to help create the heatmap to visualize the data. There are quite a few paramaters that can be used to further customize the graph. This is an Axes-level function and will the draw the heatmap into the currently-active Axes if none is provided to the ax argument. You can change the colors to fit the different types of data you want to represent. Setting up the heatplot is also simple. https://seaborn.pydata.org/generated/seaborn.heatmap.html
+
+import pandas as pd
+
+import numpy as np
+
+import seaborn as sns
+
+from Bio import pairwise2
+
+from Bio import SeqIO
+
+from Bio.pairwise2 import format_alignment
+
+SARSE = SeqIO.to_dict(SeqIO.parse("SARSE.fasta", "fasta"))
+
+for key in SARSE.items():
+
+    print(key[0],"\n ",len(key[1].seq))
+
+    print("forward:")
+
+    print(key[1].seq)
+
+    reverse = (key[1].seq)[::-1]
+
+    reverse=reverse.complement()
+
+    print("reverse transcript:")
+
+    print(reverse)
+
+    translate = (key[1].seq).translate()
+
+    print("translate:")
+
+    print(translate)
